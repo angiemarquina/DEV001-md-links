@@ -1,10 +1,7 @@
-const mdLinks = require('../');
-
+const { mdLinks } = require('../index.js');
 
 describe('mdLinks', () => {
-
-  it('should...', () => {
-    console.log('FIX ME!');
-  });
-
+  it('debe rechazar cuando el path no existe', () => mdLinks('/noexiste.md').catch((error) => {
+    expect(error).toStrictEqual(new Error('la ruta no existe'));
+  }));
 });
