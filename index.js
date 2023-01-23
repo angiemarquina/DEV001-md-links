@@ -1,4 +1,4 @@
-const { pathExists, isAbsolutePath, toAbsolute } = require('./src/api');
+const { pathExists, isAbsolutePath } = require('./src/api');
 
 const mdLinks = (path, options) => new Promise((resolve, reject) => {
   if (!pathExists(path)) {
@@ -7,11 +7,6 @@ const mdLinks = (path, options) => new Promise((resolve, reject) => {
     resolve(isAbsolutePath(path));
   }
 });
-
-console.log(pathExists('C:/Users/Dell/Documents/GitHub/DEV001-md-links/prueba md/ejemplo.md'));
-console.log(pathExists('/noexiste.md'));
-console.log(isAbsolutePath('C:/Users/Dell/Documents/GitHub/DEV001-md-links/prueba md/ejemplo.md'));
-console.log(toAbsolute('./src/api'));
 
 module.exports = {
   mdLinks,
