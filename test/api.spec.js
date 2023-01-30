@@ -1,5 +1,5 @@
 const {
-  pathExists, isAbsolutePath, toAbsolute, isMarkdown, readFile,
+  pathExists, isAbsolutePath, toAbsolute, isMarkdown, readFile, getLinks,
 } = require('../src/api');
 
 const existPath = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test';
@@ -8,6 +8,13 @@ const absolutePath = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folde
 const relativePath = 'folder-test\\file-md.md';
 const markdownFile = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\file-md.md';
 const txtFile = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\file-txt.txt';
+const outputLinks = [
+  {
+    href: 'https://github.com/angiemarquina/DEV001-md-links/blob/main/README.md',
+    text: 'README.md - angiemarquina',
+    file: 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\file-md.md',
+  },
+];
 
 describe('pathExists test', () => {
   it('debe retornar true si la ruta existe', () => {
@@ -44,6 +51,12 @@ describe('isMarkdown test', () => {
 
 describe('readFile test', () => {
   it('debe retornar el contenido del archivo', () => {
-    expect(readFile(markdownFile)).toEqual('hola');
+    expect(readFile(txtFile)).toEqual('hola');
   });
+});
+
+describe('getLinks test', () => {
+  it('debe retornar un array de links', () => {
+    expect(getLinks(markdownFile)).toEqual(outputLinks);
+});
 });
