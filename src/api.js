@@ -13,6 +13,21 @@ const isMarkdown = (inputPath) => path.extname(inputPath) === '.md';
 //   }
 // });
 const readFile = (inputPath) => fs.readFileSync(inputPath, 'utf-8');
+const getLinks = (inputPath) => {
+  const content = readFile(inputPath);
+  const regex = /\[(.*)\]\(((?:\/|https?:\/\/).*)\)/g;
+  const links = [];
+  let match = regex.exec(content);
+  while (match !== null) {
+    links.push({
+      href: match[2],
+      text: match[1],
+      file: inputPath,
+    });
+    match = regex.exec(content);
+  }
+  return links;
+};
 
 module.exports = {
   pathExists,
@@ -20,4 +35,5 @@ module.exports = {
   toAbsolute,
   isMarkdown,
   readFile,
+  getLinks,
 };
