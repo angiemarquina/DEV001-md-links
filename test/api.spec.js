@@ -4,15 +4,15 @@ const {
 
 const existPath = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test';
 const noExistPath = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\no-folder-test';
-const absolutePath = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\file-md.md';
-const relativePath = 'folder-test\\file-md.md';
-const markdownFile = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\file-md.md';
-const txtFile = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\file-txt.txt';
+const absolutePath = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\md-file.md';
+const relativePath = 'folder-test\\md-file.md';
+const markdownFile = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\md-file.md';
+const txtFile = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\txt-file.txt';
 const outputLinks = [
   {
     href: 'https://github.com/angiemarquina/DEV001-md-links/blob/main/README.md',
     text: 'README.md - angiemarquina',
-    file: 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\file-md.md',
+    file: 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\md-file.md',
   },
 ];
 
@@ -58,5 +58,5 @@ describe('readFile test', () => {
 describe('getLinks test', () => {
   it('debe retornar un array de links', () => {
     expect(getLinks(markdownFile)).toEqual(outputLinks);
-});
+  });
 });
