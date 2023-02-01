@@ -1,5 +1,10 @@
 const {
-  pathExists, isAbsolutePath, toAbsolute, isMarkdown, readFile, getLinks,
+  pathExists,
+  isAbsolutePath,
+  toAbsolute,
+  isMarkdown,
+  readFile,
+  getLinks,
 } = require('../src/api');
 
 const existPath = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test';
