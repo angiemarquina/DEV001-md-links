@@ -1,7 +1,7 @@
-const { mdLinks } = require('./index');
+const { mdLinks } = require('../index');
 
-mdLinks('/noexiste.md').then(() => {
-
+mdLinks('./folder-test/empty-md-file.md').then((links) => {
+  console.log(links);
 }).catch((error) => {
   console.log(error);
 });

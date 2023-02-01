@@ -1,5 +1,9 @@
 const {
-  pathExists, convertToAbsolutePath, isFile, isMarkdown, getLinks,
+  pathExists,
+  convertToAbsolutePath,
+  isFile,
+  isMarkdown,
+  getLinks,
 } = require('./src/api');
 
 const mdLinks = (path, options) => new Promise((resolve, reject) => {
@@ -7,8 +11,14 @@ const mdLinks = (path, options) => new Promise((resolve, reject) => {
     const absolutePath = convertToAbsolutePath(path);
     if (isFile(absolutePath)) {
       if (isMarkdown(absolutePath)) {
-        const links = getLinks(absolutePath);
-        resolve(links);
+        getLinks(absolutePath)
+          .then((links) => {
+            if (links.length !== 0) {
+              resolve(links);
+            } else {
+              reject(new Error('this path doesnt have links'));
+            }
+          });
       } else {
         reject(new Error('the path isnt a markdown file'));
       }
@@ -19,11 +29,6 @@ const mdLinks = (path, options) => new Promise((resolve, reject) => {
     reject(new Error('path doesnt exist'));
   }
 });
-
-console.log(mdLinks('C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\md-file.md'));
-console.log(mdLinks('./folder-test/md-file.md'));
-console.log(mdLinks('./folder-test/md-file-doesnt-exist.md'));
-console.log(mdLinks('./folder-test/txt-file.txt'));
 
 module.exports = {
   mdLinks,

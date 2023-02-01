@@ -13,29 +13,36 @@ const convertToAbsolutePath = (inputPath) => {
 
 const isFile = (inputPath) => fs.lstatSync(inputPath).isFile();
 const isMarkdown = (inputPath) => path.extname(inputPath) === '.md';
-// const readFile = (inputPath) => fs.readFile(inputPath, 'utf-8', (err, data) => {
-//   if (err) {
-//     throw err;
-//   } else {
-//     console.log(data);
-//   }
-// });
-const readFile = (inputPath) => fs.readFileSync(inputPath, 'utf-8');
-const getLinks = (inputPath) => {
-  const content = readFile(inputPath);
-  const regex = /\[(.*)\]\(((?:\/|https?:\/\/).*)\)/g;
+const readFile = (inputPath) => new Promise((resolve, reject) => {
+  fs.readFile(inputPath, 'utf-8', (err, data) => {
+    if (err) {
+      reject(err);
+    } else {
+      resolve(data);
+    }
+  });
+});
+
+const getLinks = (inputPath) => new Promise((resolve, reject) => {
   const links = [];
-  let match = regex.exec(content);
-  while (match !== null) {
-    links.push({
-      href: match[2],
-      text: match[1],
-      file: inputPath,
+  readFile(inputPath)
+    .then((data) => {
+      const regex = /\[(.*)\]\(((?:\/|https?:\/\/).*)\)/g;
+      let match = regex.exec(data);
+      while (match !== null) {
+        links.push({
+          href: match[2],
+          text: match[1],
+          file: inputPath,
+        });
+        match = regex.exec(data);
+      }
+      resolve(links);
+    })
+    .catch((err) => {
+      reject(err);
     });
-    match = regex.exec(content);
-  }
-  return links;
-};
+});
 
 module.exports = {
   pathExists,
