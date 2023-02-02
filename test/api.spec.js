@@ -55,13 +55,13 @@ describe('isMarkdown test', () => {
 });
 
 describe('readFile test', () => {
-  it('debe retornar el contenido del archivo', () => {
-    expect(readFile(txtFile)).toEqual('hola');
-  });
+  it('debe retornar el contenido del archivo', () => readFile(txtFile).then((data) => {
+    expect(data).toEqual('hola');
+  }));
 });
 
 describe('getLinks test', () => {
-  it('debe retornar un array de links', () => {
-    expect(getLinks(markdownFile)).toEqual(outputLinks);
-  });
+  it('debe retornar un array de links', () => getLinks(markdownFile).then((data) => {
+    expect(data).toEqual(outputLinks);
+  }));
 });
