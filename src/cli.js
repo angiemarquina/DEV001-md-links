@@ -1,6 +1,6 @@
 const { mdLinks } = require('../index');
 
-mdLinks('./folder-test/empty-md-file.md').then((links) => {
+mdLinks('./folder-test/md-file.md', { validate: true }).then((links) => {
   console.log(links);
 }).catch((error) => {
   console.log(error);
