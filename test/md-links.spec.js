@@ -12,6 +12,13 @@ const validateTrue = [
     status: 200,
     message: 'ok',
   },
+  {
+    href: 'https://pages.github.co/',
+    text: 'GitHub pages',
+    file: 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\md-file.md',
+    status: 'failed request',
+    message: 'fail',
+  },
 ];
 
 describe('mdLinks test', () => {
