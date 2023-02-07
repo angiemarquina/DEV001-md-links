@@ -22,6 +22,11 @@ const outputLinks = [
     text: 'README.md - angiemarquina',
     file: 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\md-file.md',
   },
+  {
+    href: 'https://pages.github.co/',
+    text: 'GitHub pages',
+    file: 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\md-file.md',
+  },
 ];
 
 describe('pathExists test', () => {
