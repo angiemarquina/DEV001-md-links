@@ -1,3 +1,8 @@
+const chalk = require('chalk');
+
+const ok = chalk.green;
+const fail = chalk.red;
+
 const { mdLinks } = require('../index');
 
 const path = process.argv[2];
@@ -37,11 +42,14 @@ if (options.help) {
   mdLinks(path, options)
     .then((links) => {
       links.forEach((link) => {
-        console.log(`
+        const colors = link.message === 'ok' ? ok : fail;
+        console.log(colors(`
         href: ${link.href} 
         text: ${link.text}
-        file: ${link.file} 
-        `);
+        file: ${link.file}
+        status: ${link.status}
+        message: ${link.message}
+        `));
       });
     })
     .catch((err) => {
