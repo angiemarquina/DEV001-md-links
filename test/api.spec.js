@@ -1,18 +1,21 @@
 const {
   pathExists,
   isAbsolutePath,
-  toAbsolute,
+  convertToAbsolutePath,
+  isFile,
   isMarkdown,
   readFile,
   getLinks,
 } = require('../src/api');
 
 const existPath = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test';
-const noExistPath = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\no-folder-test';
+const noPathExist = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\no-folder-test';
 const absolutePath = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\md-file.md';
 const relativePath = 'folder-test\\md-file.md';
+const filePath = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\md-file.md';
 const markdownFile = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\md-file.md';
 const txtFile = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\txt-file.txt';
+const noFileExist = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\no-md-file.md';
 const outputLinks = [
   {
     href: 'https://github.com/angiemarquina/DEV001-md-links/blob/main/README.md',
@@ -26,7 +29,7 @@ describe('pathExists test', () => {
     expect(pathExists(existPath)).toBe(true);
   });
   it('debe retornar false si la ruta no existe', () => {
-    expect(pathExists(noExistPath)).toBe(false);
+    expect(pathExists(noPathExist)).toBe(false);
   });
 });
 
@@ -39,9 +42,15 @@ describe('isAbsolutePath test', () => {
   });
 });
 
-describe('toAbsolute test', () => {
+describe('convertToAbsolutePath test', () => {
   it('debe retornar una ruta absoluta', () => {
-    expect(toAbsolute(relativePath)).toBe(absolutePath);
+    expect(convertToAbsolutePath(relativePath)).toBe(absolutePath);
+  });
+});
+
+describe('isFile test', () => {
+  it('debe retornar true si la ruta es archivo', () => {
+    expect(isFile(filePath)).toBe(true);
   });
 });
 
@@ -58,10 +67,16 @@ describe('readFile test', () => {
   it('debe retornar el contenido del archivo', () => readFile(txtFile).then((data) => {
     expect(data).toEqual('hola');
   }));
+  it('debe rechazar cuando el archivo no existe', () => readFile(noFileExist).catch((err) => {
+    expect(err).toBeDefined();
+  }));
 });
 
 describe('getLinks test', () => {
   it('debe retornar un array de links', () => getLinks(markdownFile).then((data) => {
     expect(data).toEqual(outputLinks);
+  }));
+  it('debe rechazar cuando el archivo no existe', () => getLinks(noFileExist).catch((err) => {
+    expect(err).toBeDefined();
   }));
 });
