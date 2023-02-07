@@ -42,14 +42,13 @@ if (options.help) {
   mdLinks(path, options)
     .then((links) => {
       links.forEach((link) => {
-        const colors = link.message === 'ok' ? ok : fail;
-        console.log(colors(`
+        console.log(`
         href: ${link.href} 
         text: ${link.text}
         file: ${link.file}
         status: ${link.status}
-        message: ${link.message}
-        `));
+        message: ${link.message === 'ok' ? ok(link.message) : fail(link.message)}
+        `);
       });
     })
     .catch((err) => {
