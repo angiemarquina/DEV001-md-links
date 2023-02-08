@@ -4,9 +4,9 @@ const {
   isFile,
   isMarkdown,
   getLinks,
-} = require('./src/api');
+} = require('./api');
 
-const { verifyLinks } = require('./src/validate');
+const { verifyLinks } = require('./validate');
 
 const mdLinks = (path, options) => new Promise((resolve, reject) => {
   if (!pathExists(path)) {
