@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const ok = chalk.green;
 const fail = chalk.red;
 
-const { mdLinks } = require('../index');
+const { mdLinks } = require('./index');
 
 const path = process.argv[2];
 
