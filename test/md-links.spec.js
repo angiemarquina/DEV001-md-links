@@ -1,4 +1,4 @@
-const { mdLinks } = require('../index');
+const { mdLinks } = require('../src/index');
 
 const noPathExist = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\no-folder-test';
 const txtFile = 'C:\\Users\\Dell\\Documents\\GitHub\\DEV001-md-links\\folder-test\\txt-file.txt';
