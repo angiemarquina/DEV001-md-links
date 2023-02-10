@@ -24,7 +24,7 @@ const mdLinks = (path, options) => new Promise((resolve, reject) => {
       if (links.length === 0) {
         reject(new Error('this path doesnt have links'));
       }
-      if (options.validate === false) {
+      if (options === { validate: false }) {
         resolve(links);
       }
       verifyLinks(links)

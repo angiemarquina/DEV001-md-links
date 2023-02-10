@@ -3,12 +3,11 @@ const path = require('path');
 
 const pathExists = (inputPath) => fs.existsSync(inputPath);
 const isAbsolutePath = (inputPath) => path.isAbsolute(inputPath);
-const toAbsolute = (inputPath) => path.resolve(inputPath);
 const convertToAbsolutePath = (inputPath) => {
   if (isAbsolutePath(inputPath)) {
     return inputPath;
   }
-  return toAbsolute(inputPath);
+  return path.resolve(inputPath);
 };
 
 const isFile = (inputPath) => fs.lstatSync(inputPath).isFile();
@@ -47,7 +46,6 @@ const getLinks = (inputPath) => new Promise((resolve, reject) => {
 module.exports = {
   pathExists,
   isAbsolutePath,
-  toAbsolute,
   convertToAbsolutePath,
   isFile,
   isMarkdown,
